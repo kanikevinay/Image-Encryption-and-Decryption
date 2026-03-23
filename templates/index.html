@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Encryption | Exposys Data Labs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div class="hero-head">
+        <h1>Image Encryption and Decryption</h1>
+        <button type="button" id="theme_toggle" class="toggle-btn" aria-label="Switch to dark mode">🌙 Dark Mode</button>
+      </div>
+      <p class="subtitle">Upload an image, choose encryption type, protect it with your secret key, and restore it safely.</p>
+      <p class="note">Security note: 3DES is legacy crypto; AES-GCM is recommended for modern production systems.</p>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <section class="status-wrap">
+          {% for category, message in messages %}
+            <div class="status {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% endwith %}
+
+    {% if download_name %}
+      <section class="download-card">
+        <p class="download-title">Your file is ready</p>
+        <a class="download-btn" href="{{ url_for('download', filename=download_name) }}">Download {{ mode|capitalize }} Output</a>
+      </section>
+    {% endif %}
+
+    <section class="grid">
+      <article class="card">
+        <h2>Encrypt Image</h2>
+        <form action="{{ url_for('encrypt_route') }}" method="post" enctype="multipart/form-data" class="form-block">
+          <label for="image_file">Select Image File</label>
+          <input id="image_file" name="image_file" type="file" accept="image/*" required>
+
+          <label for="algorithm">Encryption Type</label>
+          <select id="algorithm" name="algorithm" required>
+            <option value="3DES" {% if selected_algorithm|default('3DES') == '3DES' %}selected{% endif %}>3DES</option>
+            <option value="AES_GCM" {% if selected_algorithm|default('3DES') == 'AES_GCM' %}selected{% endif %}>AES-GCM</option>
+          </select>
+
+          <label for="enc_password">Secret Key</label>
+          <input id="enc_password" name="password" type="password" minlength="4" placeholder="Enter secret key" required>
+
+          <button type="submit" class="btn">Encrypt</button>
+        </form>
+
+        <div class="preview-box">
+          <p>Image Preview</p>
+          <img id="image_preview" alt="Selected image preview">
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Decrypt File</h2>
+        <form action="{{ url_for('decrypt_route') }}" method="post" enctype="multipart/form-data" class="form-block">
+          <label for="enc_file">Select Encrypted File (.enc)</label>
+          <input id="enc_file" name="enc_file" type="file" accept=".enc" required>
+
+          <label for="dec_password">Secret Key</label>
+          <input id="dec_password" name="password" type="password" minlength="4" placeholder="Enter same key used for encryption" required>
+
+          <p class="dec-hint">Encryption type is auto-detected from the uploaded encrypted file.</p>
+
+          <button type="submit" class="btn alt">Decrypt</button>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

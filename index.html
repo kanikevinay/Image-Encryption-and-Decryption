@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask App Launcher</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background: linear-gradient(130deg, #f6f3ea, #e7efe7);
+      color: #121212;
+    }
+    .card {
+      max-width: 700px;
+      margin: 1rem;
+      padding: 1.2rem 1.3rem;
+      background: #fff;
+      border: 1px solid #d8d8d8;
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      margin: 0 0 0.6rem;
+      font-size: 1.3rem;
+    }
+    p { margin: 0.35rem 0; }
+    a {
+      display: inline-block;
+      margin-top: 0.8rem;
+      text-decoration: none;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      background: #0b5d4a;
+      color: #fff;
+      font-weight: 700;
+    }
+    code { background: #f2f2f2; padding: 0.1rem 0.3rem; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>This project is a Flask backend app</h1>
+    <p><strong>Go Live</strong> serves static files only. It does not run Python/Flask routes.</p>
+    <p>Start Flask from terminal using <code>run_app.bat</code> or <code>python app.py</code> with the project venv.</p>
+    <a href="http://127.0.0.1:5000" target="_blank" rel="noopener">Open Flask App (127.0.0.1:5000)</a>
+  </div>
+</body>
+</html>
