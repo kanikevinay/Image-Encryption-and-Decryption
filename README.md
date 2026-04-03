@@ -57,6 +57,12 @@ project/
 `-- .gitignore
 ```
 
+Additional files in rawstuff root:
+- `start_project.bat` : one-command launcher from rawstuff folder
+- `start_project.ps1` : PowerShell launcher from rawstuff folder
+- `submission_docs/Project_Report.md` : internship report
+- `submission_docs/Project_Presentation.pptx` : internship presentation
+
 ## How Encryption Works
 
 ### 3DES output format
@@ -150,6 +156,20 @@ PowerShell -ExecutionPolicy Bypass -File .\run_app.ps1
 Launcher scripts auto-detect virtual environment in:
 - `project/.venv`
 - parent folder `.venv`
+
+## New Session (Tomorrow) Quick Start
+If you open VS Code later and start from `raw stuff` folder, run:
+
+```powershell
+cd "d:\exposys data labs\project stuff\raw stuff"
+start_project.bat
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5000
+```
 
 ## Troubleshooting
 
