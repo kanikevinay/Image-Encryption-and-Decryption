@@ -1,3 +1,7 @@
+🔗 Live Demo: https://image-encryption-and-decryption-6j1n.onrender.com
+
+Note: Deployed on Render (Free Tier), may take a few seconds to load initially.
+
 # Image Encryption and Decryption (Flask + 3DES + AES-GCM)
 
 A Flask web application to encrypt and decrypt image files.
